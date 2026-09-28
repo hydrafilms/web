@@ -1,1 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hydrangea Films</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Black&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<!-- ===== PRELOADER ===== -->
+<div id="preloader">
+  <video id="preloader-desktop" class="preloader-video" muted playsinline src="assets/preloader-desktop.mp4"></video>
+  <video id="preloader-mobile" class="preloader-video" muted playsinline src="assets/preloader-mobile.mp4"></video>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header id="site-header">
+  <a href="#home" class="logo" data-target="home">
+    <img src="assets/logo.png" alt="Hydrangea Films">
+  </a>
+  <nav id="main-nav">
+    <button class="nav-link active" data-target="home" data-en="Home" data-fr="Accueil">Home</button>
+    <button class="nav-link" data-target="mission" data-en="Mission" data-fr="Mission">Mission</button>
+    <button class="nav-link" data-target="projects" data-en="Projects" data-fr="Projets">Projects</button>
+    <button class="nav-link" data-target="contact" data-en="Contact" data-fr="Contact">Contact</button>
+    <button id="lang-toggle" data-en="FR" data-fr="EN">FR</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ===== HOME ===== -->
+  <section id="home" class="section">
+    <video class="bg-video" autoplay muted loop playsinline src="assets/demo-reel.mp4"></video>
+  </section>
+
+  <!-- ===== MISSION ===== -->
+  <section id="mission" class="section">
+    <img class="mission-bg" src="assets/mission-bg.jpg" alt="">
+    <div class="mission-inner">
+
+      <p class="mission-line align-left">
+        <img class="lang-img" src="assets/mission-line1-en.png"
+             data-en-src="assets/mission-line1-en.png"
+             data-fr-src="assets/mission-line1-fr.png"
+             alt="Hydrangea Films is committed to promoting diversity, equity and inclusion in the world of cinema.">
+      </p>
+
+      <p class="mission-line">
+        <img class="lang-img" src="assets/mission-line2-en.png"
+             data-en-src="assets/mission-line2-en.png"
+             data-fr-src="assets/mission-line2-fr.png"
+             alt="At the heart of our mission is the belief that films should reflect the diverse voices and perspectives that exist in our community.">
+      </p>
+
+      <p class="mission-line align-right">
+        <img class="lang-img" src="assets/mission-line3-en.png"
+             data-en-src="assets/mission-line3-en.png"
+             data-fr-src="assets/mission-line3-fr.png"
+             alt="We believe that every artist should be given the opportunity to create and express themselves through the art of filmmaking.">
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="section">
+    <div class="projects-heading">
+      <img class="lang-img" src="assets/projects-title-en.png"
+           data-en-src="assets/projects-title-en.png"
+           data-fr-src="assets/projects-title-fr.png"
+           alt="Projects">
+    </div>
+    <div class="accordion" id="accordion">
+
+      <div class="accordion-item">
+        <img class="accordion-still" src="assets/film1-still.jpg" alt="">
+        <video class="accordion-video" muted loop playsinline preload="none" src="assets/film1.mp4"></video>
+        <div class="accordion-caption">
+          <img class="lang-img caption-title" src="assets/film1-title-en.png" data-en-src="assets/film1-title-en.png" data-fr-src="assets/film1-title-fr.png" alt="Film One">
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <img class="accordion-still" src="assets/film2-still.jpg" alt="">
+        <video class="accordion-video" muted loop playsinline preload="none" src="assets/film2.mp4"></video>
+        <div class="accordion-caption">
+          <img class="lang-img caption-title" src="assets/film2-title-en.png" data-en-src="assets/film2-title-en.png" data-fr-src="assets/film2-title-fr.png" alt="Film Two">
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <img class="accordion-still" src="assets/film3-still.jpg" alt="">
+        <video class="accordion-video" muted loop playsinline preload="none" src="assets/film3.mp4"></video>
+        <div class="accordion-caption">
+          <img class="lang-img caption-title" src="assets/film3-title-en.png" data-en-src="assets/film3-title-en.png" data-fr-src="assets/film3-title-fr.png" alt="Film Three">
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <img class="accordion-still" src="assets/film4-still.jpg" alt="">
+        <video class="accordion-video" muted loop playsinline preload="none" src="assets/film4.mp4"></video>
+        <div class="accordion-caption">
+          <img class="lang-img caption-title" src="assets/film4-title-en.png" data-en-src="assets/film4-title-en.png" data-fr-src="assets/film4-title-fr.png" alt="Film Four">
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <img class="accordion-still" src="assets/film5-still.jpg" alt="">
+        <video class="accordion-video" muted loop playsinline preload="none" src="assets/film5.mp4"></video>
+        <div class="accordion-caption">
+          <img class="lang-img caption-title" src="assets/film5-title-en.png" data-en-src="assets/film5-title-en.png" data-fr-src="assets/film5-title-fr.png" alt="Film Five">
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <img class="accordion-still" src="assets/film6-still.jpg" alt="">
+        <video class="accordion-video" muted loop playsinline preload="none" src="assets/film6.mp4"></video>
+        <div class="accordion-caption">
+          <img class="lang-img caption-title" src="assets/film6-title-en.png" data-en-src="assets/film6-title-en.png" data-fr-src="assets/film6-title-fr.png" alt="Film Six">
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <img class="accordion-still" src="assets/film7-still.jpg" alt="">
+        <video class="accordion-video" muted loop playsinline preload="none" src="assets/film7.mp4"></video>
+        <div class="accordion-caption">
+          <img class="lang-img caption-title" src="assets/film7-title-en.png" data-en-src="assets/film7-title-en.png" data-fr-src="assets/film7-title-fr.png" alt="Film Seven">
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <img class="accordion-still" src="assets/film8-still.jpg" alt="">
+        <video class="accordion-video" muted loop playsinline preload="none" src="assets/film8.mp4"></video>
+        <div class="accordion-caption">
+          <img class="lang-img caption-title" src="assets/film8-title-en.png" data-en-src="assets/film8-title-en.png" data-fr-src="assets/film8-title-fr.png" alt="Film Eight">
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <img class="accordion-still" src="assets/film9-still.jpg" alt="">
+        <video class="accordion-video" muted loop playsinline preload="none" src="assets/film9.mp4"></video>
+        <div class="accordion-caption">
+          <img class="lang-img caption-title" src="assets/film9-title-en.png" data-en-src="assets/film9-title-en.png" data-fr-src="assets/film9-title-fr.png" alt="Film Nine">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section">
+    <img class="contact-bg" src="assets/contact-bg.jpg" alt="">
+    <div class="contact-inner">
+      <img class="lang-img contact-title-img" src="assets/contact-title-en.png"
+           data-en-src="assets/contact-title-en.png"
+           data-fr-src="assets/contact-title-fr.png"
+           alt="Let's bring your vision to life">
+      <img class="lang-img contact-subtitle-img" src="assets/contact-subtitle-en.png"
+           data-en-src="assets/contact-subtitle-en.png"
+           data-fr-src="assets/contact-subtitle-fr.png"
+           alt="Get in touch">
+
+      <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <input type="text" name="firstName" data-en-ph="First name" data-fr-ph="Prénom" placeholder="First name" required>
+          <input type="text" name="lastName" data-en-ph="Last name" data-fr-ph="Nom" placeholder="Last name" required>
+        </div>
+        <input type="email" name="email" data-en-ph="Email" data-fr-ph="Courriel" placeholder="Email" required>
+        <input type="text" name="address" data-en-ph="Address" data-fr-ph="Adresse" placeholder="Address">
+        <textarea name="message" rows="5" data-en-ph="Message" data-fr-ph="Message" placeholder="Message" required></textarea>
+
+        <p class="checkbox-label" data-en="I am a" data-fr="Je suis">I am a</p>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="role" value="Filmmaker"><span data-en="Filmmaker" data-fr="Cinéaste">Filmmaker</span></label>
+          <label><input type="checkbox" name="role" value="Music Artist"><span data-en="Music Artist" data-fr="Artiste musical">Music Artist</span></label>
+          <label><input type="checkbox" name="role" value="Producer"><span data-en="Producer" data-fr="Producteur">Producer</span></label>
+          <label><input type="checkbox" name="role" value="Other"><span data-en="Other" data-fr="Autre">Other</span></label>
+        </div>
+
+        <button type="submit" data-en="Send" data-fr="Envoyer">Send</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
