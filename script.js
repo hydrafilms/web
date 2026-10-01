@@ -160,14 +160,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const touchDevice = window.matchMedia('(hover: none)').matches;
 
   function expand(item) {
-    items.forEach(i => i.classList.remove('expanded'));
+    items.forEach(i => { if (i !== item) collapse(i); });
     item.classList.add('expanded');
     const vid = item.querySelector('.accordion-video');
     vid.currentTime = 0;
+    vid.addEventListener('playing', () => {
+      if (item.classList.contains('expanded')) item.classList.add('playing');
+    }, { once: true });
     vid.play().catch(() => {});
   }
   function collapse(item) {
-    item.classList.remove('expanded');
+    item.classList.remove('expanded', 'playing');
     item.querySelector('.accordion-video').pause();
   }
 

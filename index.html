@@ -7,14 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Black&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
 <!-- ===== PRELOADER ===== -->
 <div id="preloader">
-  <video id="preloader-desktop" class="preloader-video" muted playsinline src="assets/HYDRANGEA_TRAILER.mp4"></video>
-  <video id="preloader-mobile" class="preloader-video" muted playsinline src="assets/HYDRANGEA_TRAILER.mp4"></video>
+  <video id="preloader-desktop" class="preloader-video" muted playsinline preload="auto" src="assets/HYDRANGEA_TRAILER.mp4"></video>
+  <video id="preloader-mobile" class="preloader-video" muted playsinline preload="auto" src="assets/HYDRANGEA_TRAILER_MB.mp4"></video>
 </div>
 
 <!-- ===== HEADER ===== -->
@@ -35,7 +35,7 @@
 
   <!-- ===== HOME ===== -->
   <section id="home" class="section">
-    <video class="bg-video" autoplay muted loop playsinline src="assets/DEMOREEL.mp4"></video>
+    <video id="demo-reel" class="bg-video" muted loop playsinline preload="none" poster="assets/DEMOREEL-POSTER.jpg" src="assets/DEMOREEL.mp4"></video>
   </section>
 
   <!-- ===== MISSION ===== -->
@@ -72,7 +72,7 @@
     <div class="projects-heading">
       <img class="lang-img" src="assets/TITLE_PROJECTS.png"
            data-en-src="assets/TITLE_PROJECTS.png"
-           data-fr-src="assets/TITLE_PROJECTS-FR."
+           data-fr-src="assets/TITLE_PROJECTS-FR.png"
            alt="Projects">
     </div>
     <div class="accordion" id="accordion">
@@ -81,7 +81,7 @@
         <img class="accordion-still" src="assets/ABSOLVED-STILL.jpg" alt="">
         <video class="accordion-video" muted loop playsinline preload="none" src="assets/ABSOLVED.mp4"></video>
         <div class="accordion-caption">
-          <img class="lang-img caption-title" src="assets/ABSOLVED.png" data-en-src="assets/ABSOLVED.png" data-fr-src="assets/ABSOLVED.png" alt="Film One">
+          <img class="lang-img caption-title" src="assets/ABSOLVED.png" data-en-src="assets/ABSOLVED.png" data-fr-src="assets/ABSOLVED.png" alt="Absolved">
         </div>
       </div>
 
@@ -89,15 +89,7 @@
         <img class="accordion-still" src="assets/pg.png" alt="">
         <video class="accordion-video" muted loop playsinline preload="none" src="assets/PG.mp4"></video>
         <div class="accordion-caption">
-          <img class="lang-img caption-title" src="assets/PLAYGROUND.png" data-en-src="assets/PLAYGROUND.png" data-fr-src="assets/PLAYGROUND.png" alt="Film Two">
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <img class="accordion-still" src="assets/film3-still.jpg" alt="">
-        <video class="accordion-video" muted loop playsinline preload="none" src="assets/film3.mp4"></video>
-        <div class="accordion-caption">
-          <img class="lang-img caption-title" src="assets/film3-title-en.png" data-en-src="assets/film3-title-en.png" data-fr-src="assets/film3-title-fr.png" alt="Film Three">
+          <img class="lang-img caption-title" src="assets/PLAYGROUND.png" data-en-src="assets/PLAYGROUND.png" data-fr-src="assets/PLAYGROUND.png" alt="Playground">
         </div>
       </div>
 
@@ -105,15 +97,16 @@
         <img class="accordion-still" src="assets/WILDFLOWER-STILL.png" alt="">
         <video class="accordion-video" muted loop playsinline preload="none" src="assets/WILDFLOWER.mp4"></video>
         <div class="accordion-caption">
-          <img class="lang-img caption-title" src="assets/WILDFLOWER.png" data-en-src="assets/WILDFLOWER.png" data-fr-src="assets/WILDFLOWER.png" alt="Film Four">
+          <img class="lang-img caption-title" src="assets/WILDFLOWER.png" data-en-src="assets/WILDFLOWER.png" data-fr-src="assets/WILDFLOWER.png" alt="Wildflower">
         </div>
       </div>
 
+      <!-- OLIVIA: title image is still a placeholder -->
       <div class="accordion-item">
         <img class="accordion-still" src="assets/OLIVIA.png" alt="">
         <video class="accordion-video" muted loop playsinline preload="none" src="assets/OLIVIA.mp4"></video>
         <div class="accordion-caption">
-          <img class="lang-img caption-title" src="assets/film5-title-en.png" data-en-src="assets/film5-title-en.png" data-fr-src="assets/film5-title-fr.png" alt="Film Five">
+          <img class="lang-img caption-title" src="assets/film5-title-en.png" data-en-src="assets/film5-title-en.png" data-fr-src="assets/film5-title-fr.png" alt="Olivia">
         </div>
       </div>
 
@@ -121,7 +114,7 @@
         <img class="accordion-still" src="assets/IRH.png" alt="">
         <video class="accordion-video" muted loop playsinline preload="none" src="assets/IRH.mp4"></video>
         <div class="accordion-caption">
-          <img class="lang-img caption-title" src="assets/IMRIGHTHERE.png" data-en-src="assets/IMRIGHTHERE.png" data-fr-src="assets/IMRIGHTHERE.png" alt="Film Six">
+          <img class="lang-img caption-title" src="assets/IMRIGHTHERE.png" data-en-src="assets/IMRIGHTHERE.png" data-fr-src="assets/IMRIGHTHERE.png" alt="I'm Right Here">
         </div>
       </div>
 
@@ -129,7 +122,7 @@
         <img class="accordion-still" src="assets/SHIMANAGASHI.jpg" alt="">
         <video class="accordion-video" muted loop playsinline preload="none" src="assets/SHIMANAGASHI.mp4"></video>
         <div class="accordion-caption">
-          <img class="lang-img caption-title" src="assets/SHIMANAGASHI.png" data-en-src="assets/SHIMANAGASHI.png" data-fr-src="assets/SHIMANAGASHI.png" alt="Film Seven">
+          <img class="lang-img caption-title" src="assets/SHIMANAGASHI.png" data-en-src="assets/SHIMANAGASHI.png" data-fr-src="assets/SHIMANAGASHI.png" alt="Shimanagashi">
         </div>
       </div>
 
@@ -137,7 +130,7 @@
         <img class="accordion-still" src="assets/TATMC-STILL.png" alt="">
         <video class="accordion-video" muted loop playsinline preload="none" src="assets/TATMC.mp4"></video>
         <div class="accordion-caption">
-          <img class="lang-img caption-title" src="assets/TATMC.png" data-en-src="assets/TATMC.png" data-fr-src="assets/TATMC.png" alt="Film Eight">
+          <img class="lang-img caption-title" src="assets/TATMC.png" data-en-src="assets/TATMC.png" data-fr-src="assets/TATMC.png" alt="TATMC">
         </div>
       </div>
 
@@ -145,7 +138,7 @@
         <img class="accordion-still" src="assets/COCOON_S.png" alt="">
         <video class="accordion-video" muted loop playsinline preload="none" src="assets/COCOON-STILL.mp4"></video>
         <div class="accordion-caption">
-          <img class="lang-img caption-title" src="assets/COCOON.png" data-en-src="assets/COCOON.png" data-fr-src="assets/COCOON.png" alt="Film Nine">
+          <img class="lang-img caption-title" src="assets/COCOON.png" data-en-src="assets/COCOON.png" data-fr-src="assets/COCOON.png" alt="Cocoon">
         </div>
       </div>
 
@@ -158,7 +151,7 @@
     <div class="contact-inner">
       <img class="lang-img contact-title-img" src="assets/CONTACT-1.png"
            data-en-src="assets/CONTACT-1.png"
-           data-fr-src="assets/CONTACT-1 -fr.png"
+           data-fr-src="assets/CONTACT-1%20-fr.png"
            alt="Let's bring your vision to life">
       <img class="lang-img contact-subtitle-img" src="assets/CONTACT-2.png"
            data-en-src="assets/CONTACT-2.png"
@@ -189,6 +182,6 @@
 
 </main>
 
-<script src="script.js"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>
