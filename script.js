@@ -64,7 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // If the trailer hasn't started within 12 seconds, skip it
-    timer = setTimeout(finish, 12000);
+    timer = setTimeout(() => {
+      console.warn('Preloader: trailer did not start within 12 seconds');
+      finish();
+    }, 12000);
 
     // Once it's actually playing, fade it in and allow its full length
     video.addEventListener('playing', () => {
@@ -78,7 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
     video.addEventListener('ended', finish, { once: true, signal: listeners.signal });
 
     video.currentTime = 0;
-    video.play().catch(finish);
+    video.play().catch(err => {
+      console.warn('Preloader: trailer could not play', err);
+      finish();
+    });
   }
 
   if (sessionStorage.getItem('hf_preloader_seen')) {
