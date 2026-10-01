@@ -190,8 +190,8 @@ body.preloader-active{overflow:hidden;}
 }
 .contact-inner.visible{opacity:1; transform:translateY(0);}
 
-.contact-title-img{ max-width:100%; height:auto; margin:0 auto 0.75rem; display:block; }
-.contact-subtitle-img{ max-width:60%; height:auto; margin:0 auto 2rem; display:block; }
+.contact-title-img{ max-width:100%; height:auto; margin:0 auto 2rem; display:block; }
+.contact-subtitle-img{ max-width:60%; height:auto; margin:0 auto 3.5rem; display:block; }
 
 #contact-form{display:flex; flex-direction:column; gap:0.9rem; text-align:left;}
 .form-row{display:flex; gap:0.9rem;}
