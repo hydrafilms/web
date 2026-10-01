@@ -88,7 +88,11 @@ body.preloader-active{overflow:hidden;}
 }
 
 /* Mission */
-#mission{position:relative; overflow:hidden;}
+#mission{
+  position:relative; overflow:hidden;
+  min-height:130vh;
+  padding:4rem 0;
+}
 .mission-bg{
   position:absolute; inset:0;
   width:100%; height:100%;
@@ -130,7 +134,7 @@ body.preloader-active{overflow:hidden;}
   padding:0 2rem 1.5rem;
   text-align:left;
 }
-.projects-heading img{ max-width:280px; height:auto; }
+.projects-heading img{ max-width:min(560px, 100%); height:auto; }
 
 .accordion{
   width:100%; max-width:none;
@@ -257,6 +261,7 @@ input::placeholder, textarea::placeholder{color:rgba(255,255,255,0.6);}
   .form-row{flex-direction:column;}
   .accordion-item{height:220px;}
   .accordion-item.expanded{height:400px;}
+  #mission{min-height:115vh; padding:3rem 0;}
   .mission-line{margin-bottom:2.5rem;}
   .mission-line.align-left, .mission-line.align-right{text-align:center;}
   .caption-title{max-width:85%;}
