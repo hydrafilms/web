@@ -1,215 +1,267 @@
-document.addEventListener('DOMContentLoaded', () => {
+:root{
+  --black:#000000;
+  --white:#ffffff;
+  --header-h:88px;
+}
 
-  /* ============ PRELOADER (first visit + language switch) ============ */
-  const preloader = document.getElementById('preloader');
-  preloader.style.animation = 'none'; // script is running, so the CSS failsafe isn't needed
-  const isMobile = window.matchMedia('(max-width:768px)').matches;
-  const video = document.getElementById(isMobile ? 'preloader-mobile' : 'preloader-desktop');
-  const reel = document.getElementById('demo-reel');
+*{box-sizing:border-box; margin:0; padding:0;}
 
-  let reelStarted = false;
-  const bufferReel = () => {
-    if (!reel) return;
-    if (reel.preload !== 'auto') { reel.preload = 'auto'; reel.load(); }
-  };
-  const startReel = () => {
-    if (!reel || reelStarted) return;
-    reelStarted = true;
-    bufferReel();
-    reel.play().catch(() => {});
-  };
+html{scroll-behavior:smooth;}
 
-  let running = false;
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:'Archivo', sans-serif;
+  overflow-x:hidden;
+}
 
-  function runPreloader({ fadeIn = false, onCovered, onDone } = {}) {
-    running = true;
-    let finished = false;
-    let coveredDone = false;
-    let timer;
-    const listeners = new AbortController();
+/* ---------- Archivo Black, black fill / white outline (header) ---------- */
+.stroke-text, h1, h2, h3, .nav-link, #lang-toggle{
+  font-family:'Archivo Black', sans-serif;
+  color:var(--black);
+  -webkit-text-stroke:1px var(--white);
+  letter-spacing:0.02em;
+}
 
-    const covered = () => {
-      if (coveredDone) return;
-      coveredDone = true;
-      if (onCovered) onCovered();
-    };
+/* ---------- Preloader ---------- */
+#preloader{
+  position:fixed; inset:0; z-index:999;
+  background:var(--black);
+  display:flex; align-items:center; justify-content:center;
+  opacity:1;
+  transition:opacity 1s ease;
+  animation:hf-preloader-failsafe 0s 30s forwards;
+}
+@keyframes hf-preloader-failsafe{to{visibility:hidden; pointer-events:none;}}
+#preloader.fade-out{opacity:0;}
+.preloader-video{
+  width:100%; height:100%; object-fit:cover;
+  display:none;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+#preloader.visible .preloader-video{opacity:1;}
+#preloader-desktop{display:block;}
+@media (max-width:768px){
+  #preloader-desktop{display:none;}
+  #preloader-mobile{display:block;}
+}
+body.preloader-active{overflow:hidden;}
 
-    preloader.classList.remove('visible');
-    preloader.style.display = 'flex';
-    if (fadeIn) {
-      preloader.classList.add('fade-out');   // start transparent
-      void preloader.offsetWidth;            // register it before fading in
-      preloader.classList.remove('fade-out');
-      setTimeout(covered, 1000);             // fully black after the 1s fade
-    } else {
-      preloader.classList.remove('fade-out');
-      covered();
-    }
-    document.body.classList.add('preloader-active');
+/* ---------- Header ---------- */
+#site-header{
+  position:fixed; top:0; left:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.25rem 2rem;
+  padding-top:calc(1.25rem + env(safe-area-inset-top,0px));
+  width:100%;
+}
+.logo img{height:11px; width:auto; display:block;}
+#main-nav{display:flex; align-items:center; gap:2rem;}
+.nav-link, #lang-toggle{
+  background:none; border:none; cursor:pointer;
+  font-size:1.45rem;
+  text-transform:uppercase;
+  transition:color 0.5s ease, -webkit-text-stroke 0.5s ease;
+}
+.nav-link.active,
+.nav-link:hover,
+#lang-toggle:hover{
+  color:var(--white);
+  -webkit-text-stroke:0px transparent;
+}
 
-    const finish = () => {
-      if (finished) return;
-      finished = true;
-      clearTimeout(timer);
-      listeners.abort();
-      covered();                             // make sure the language still switches
-      preloader.classList.add('fade-out');
-      if (onDone) onDone();
-      setTimeout(() => {
-        preloader.style.display = 'none';
-        document.body.classList.remove('preloader-active');
-        video.pause();
-        running = false;
-      }, 1000);
-    };
+/* ---------- Sections ---------- */
+.section{
+  position:relative;
+  width:100%;
+  min-height:100vh;
+  display:flex; align-items:center; justify-content:center;
+}
 
-    // If the trailer hasn't started within 12 seconds, skip it
-    timer = setTimeout(finish, 12000);
+/* Home */
+#home{padding:0;}
+.bg-video{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+}
 
-    // Once it's actually playing, fade it in and allow its full length
-    video.addEventListener('playing', () => {
-      preloader.classList.add('visible');
-      bufferReel();
-      clearTimeout(timer);
-      const length = isFinite(video.duration) ? video.duration : 15;
-      timer = setTimeout(finish, (length + 2) * 1000);
-    }, { once: true, signal: listeners.signal });
+/* Mission */
+#mission{position:relative; overflow:hidden;}
+.mission-bg{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+#mission::before{
+  content:'';
+  position:absolute; inset:0;
+  background:rgba(0,0,0,0.55);
+  z-index:1;
+}
+.mission-inner{
+  position:relative; z-index:2;
+  max-width:960px;
+  padding:0 1.5rem;
+  padding-top:var(--header-h);
+  text-align:center;
+}
+.mission-line{
+  margin-bottom:4rem;
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity 1s ease, transform 1s ease;
+}
+.mission-line img{ max-width:100%; height:auto; }
+.mission-line.visible{opacity:1; transform:translateY(0);}
+.mission-line.align-left{text-align:left;}
+.mission-line.align-right{text-align:right;}
 
-    video.addEventListener('ended', finish, { once: true, signal: listeners.signal });
+/* Projects: heading + full-width vertical accordion */
+#projects{
+  align-items:flex-start;
+  flex-direction:column;
+  padding:calc(var(--header-h) + 1rem) 0 0;
+}
+.projects-heading{
+  width:100%;
+  padding:0 2rem 1.5rem;
+  text-align:left;
+}
+.projects-heading img{ max-width:280px; height:auto; }
 
-    video.currentTime = 0;
-    video.play().catch(finish);
-  }
+.accordion{
+  width:100%; max-width:none;
+  display:flex; flex-direction:column;
+}
+.accordion-item{
+  position:relative;
+  height:500px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:height 0.6s ease;
+}
+.accordion-item.expanded{height:300px;}
 
-  if (sessionStorage.getItem('hf_preloader_seen')) {
-    preloader.style.display = 'none';
-    startReel();
-  } else {
-    runPreloader({
-      onDone: () => {
-        sessionStorage.setItem('hf_preloader_seen', '1');
-        startReel();
-      }
-    });
-  }
+.accordion-still, .accordion-video{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+}
+.accordion-still{opacity:1; transition:opacity 0.4s ease;}
+.accordion-item.expanded .accordion-still{opacity:0;}
+.accordion-video{opacity:0; transition:opacity 0.4s ease;}
+.accordion-item.expanded .accordion-video{opacity:1;}
 
-  /* ============ NAV: smooth scroll + active state ============ */
-  const navLinks = document.querySelectorAll('.nav-link');
-  const sections = document.querySelectorAll('.section');
+.accordion-caption{
+  position:relative; z-index:2;
+  height:100%;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:1.25rem 1.5rem;
+  background:linear-gradient(to top, rgba(0,0,0,0.75), transparent 65%);
+}
+.caption-title{ max-width:60%; height:auto; display:block; }
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      document.getElementById(link.dataset.target).scrollIntoView({ behavior: 'smooth' });
-    });
-  });
+/* Contact */
+#contact{position:relative; overflow:hidden;}
+.contact-bg{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+#contact::before{
+  content:'';
+  position:absolute; inset:0;
+  background:rgba(0,0,0,0.55);
+  z-index:1;
+}
+.contact-inner{
+  position:relative; z-index:2;
+  max-width:560px;
+  width:100%;
+  padding:calc(var(--header-h) + 2rem) 1.5rem 3rem;
+  text-align:center;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 1s ease, transform 1s ease;
+}
+.contact-inner.visible{opacity:1; transform:translateY(0);}
 
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(l => l.classList.toggle('active', l.dataset.target === entry.target.id));
-      }
-    });
-  }, { rootMargin: '-50% 0px -50% 0px' });
+.contact-title-img{ max-width:100%; height:auto; margin:0 auto 0.75rem; display:block; }
+.contact-subtitle-img{ max-width:60%; height:auto; margin:0 auto 2rem; display:block; }
 
-  sections.forEach(s => navObserver.observe(s));
+#contact-form{display:flex; flex-direction:column; gap:0.9rem; text-align:left;}
+.form-row{display:flex; gap:0.9rem;}
+.form-row input{flex:1;}
+input, textarea{
+  background:transparent;
+  border:1px solid var(--white);
+  color:var(--white);
+  font-family:'Archivo', sans-serif;
+  padding:0.75rem 0.9rem;
+  width:100%;
+  font-size:0.95rem;
+}
+input::placeholder, textarea::placeholder{color:rgba(255,255,255,0.6);}
+.checkbox-label{
+  font-family:'Archivo Black', sans-serif;
+  color:var(--white);
+  text-transform:uppercase;
+  font-size:0.9rem; margin-top:0.5rem;
+}
 
-  /* ============ MISSION: sentence-by-sentence fade in (replays each visit) ============ */
-  const missionLines = document.querySelectorAll('.mission-line');
-  const missionContainer = document.querySelector('.mission-inner');
-  let missionTimeouts = [];
+/* Checkboxes, aligned with their labels */
+.checkbox-group{display:flex; flex-wrap:wrap; gap:1.25rem;}
+.checkbox-group label{
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  cursor:pointer;
+}
+.checkbox-group input[type="checkbox"]{
+  width:16px;
+  height:16px;
+  margin:0;
+  flex-shrink:0;
+  accent-color:var(--white);
+  cursor:pointer;
+}
+.checkbox-group label span{
+  font-family:'Archivo Black', sans-serif;
+  color:var(--white);
+  text-transform:uppercase;
+  font-size:0.85rem;
+  line-height:1;
+}
 
-  function playMissionReveal() {
-    missionTimeouts.forEach(t => clearTimeout(t));
-    missionTimeouts = [];
-    missionLines.forEach(line => line.classList.remove('visible'));
-    missionLines.forEach((line, i) => {
-      missionTimeouts.push(setTimeout(() => line.classList.add('visible'), i * 700));
-    });
-  }
+#contact-form button{
+  margin-top:0.5rem;
+  background:var(--white);
+  color:var(--black);
+  border:none;
+  font-family:'Archivo Black', sans-serif;
+  padding:0.9rem;
+  cursor:pointer;
+  letter-spacing:0.02em;
+}
 
-  if (missionContainer) {
-    const missionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          playMissionReveal();
-        } else {
-          missionTimeouts.forEach(t => clearTimeout(t));
-          missionLines.forEach(line => line.classList.remove('visible'));
-        }
-      });
-    }, { threshold: 0.4 });
-    missionObserver.observe(missionContainer);
-  }
+/* ---------- Mobile ---------- */
+@media (max-width:768px){
+  #site-header{padding:1rem 1.25rem; gap:1.25rem; flex-wrap:wrap;}
+  .logo img{height:9px;}
+  #main-nav{gap:1.25rem; flex-wrap:wrap;}
+  .nav-link, #lang-toggle{font-size:1.2rem;}
+  .form-row{flex-direction:column;}
+  .accordion-item{height:400px;}
+  .accordion-item.expanded{height:220px;}
+  .mission-line{margin-bottom:2.5rem;}
+  .mission-line.align-left, .mission-line.align-right{text-align:center;}
+  .caption-title{max-width:85%;}
+}
 
-  /* ============ CONTACT: fade in once, first time it's scrolled to ============ */
-  const contactContainer = document.querySelector('.contact-inner');
-  if (contactContainer) {
-    const contactObserver = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          contactContainer.classList.add('visible');
-          obs.disconnect();
-        }
-      });
-    }, { threshold: 0.3 });
-    contactObserver.observe(contactContainer);
-  }
-
-  /* ============ PROJECTS: accordion ============ */
-  const items = document.querySelectorAll('.accordion-item');
-  const touchDevice = window.matchMedia('(hover: none)').matches;
-
-  function expand(item) {
-    items.forEach(i => i.classList.remove('expanded'));
-    item.classList.add('expanded');
-    const vid = item.querySelector('.accordion-video');
-    vid.currentTime = 0;
-    vid.play().catch(() => {});
-  }
-  function collapse(item) {
-    item.classList.remove('expanded');
-    item.querySelector('.accordion-video').pause();
-  }
-
-  items.forEach(item => {
-    if (touchDevice) {
-      item.addEventListener('click', () => {
-        item.classList.contains('expanded') ? collapse(item) : expand(item);
-      });
-    } else {
-      item.addEventListener('mouseenter', () => expand(item));
-      item.addEventListener('mouseleave', () => collapse(item));
-    }
-  });
-
-  /* ============ LANGUAGE TOGGLE (EN / FR) with preloader ============ */
-  const langToggle = document.getElementById('lang-toggle');
-  const translatable = document.querySelectorAll('[data-en]');
-  const placeholders = document.querySelectorAll('[data-en-ph]');
-  const langImages = document.querySelectorAll('.lang-img');
-
-  function applyLang(lang) {
-    document.documentElement.setAttribute('data-lang', lang);
-    document.documentElement.lang = lang;
-    translatable.forEach(el => { el.textContent = el.dataset[lang]; });
-    placeholders.forEach(el => { el.placeholder = el.dataset[lang + 'Ph']; });
-    langImages.forEach(img => { img.src = img.dataset[lang + 'Src']; });
-    langToggle.textContent = lang === 'en' ? langToggle.dataset.en : langToggle.dataset.fr;
-    localStorage.setItem('hf_lang', lang);
-  }
-
-  langToggle.addEventListener('click', () => {
-    if (running) return; // ignore clicks while the preloader is already playing
-    runPreloader({
-      fadeIn: true,
-      onCovered: () => {
-        const current = document.documentElement.getAttribute('data-lang');
-        applyLang(current === 'en' ? 'fr' : 'en');
-      }
-    });
-  });
-
-  const savedLang = localStorage.getItem('hf_lang');
-  if (savedLang) applyLang(savedLang);
-
-});
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important; scroll-behavior:auto !important;}
+}
